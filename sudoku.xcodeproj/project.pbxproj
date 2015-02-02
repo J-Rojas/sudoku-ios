@@ -1,0 +1,432 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BB5C3359C711A84FEFD85B1F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5C3E5E0430A6D014DCE445 /* LaunchScreen.xib */; };
+		BB5C34A2F6540ED55A9B0856 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3B4615FBA470F6765D8D /* AppDelegate.m */; };
+		BB5C3544877C38B38A38DC00 /* sudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3973BF576F093C2EA254 /* sudokuTests.m */; };
+		BB5C3B542EAC1059047C773F /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C313698819F88B3969092 /* Solution.m */; };
+		BB5C3CEEB2C96CF2D52FFE3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5C389C2D8ADDE11B8D193E /* Main.storyboard */; };
+		BB5C3D54A7D74566F806BD4C /* SudokuGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3C5054502FDEFD24FE2E /* SudokuGenerator.m */; };
+		BB5C3DE2C6CD624A84B55820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5C361149CD47903741C90E /* Images.xcassets */; };
+		BB5C3E6BF40B4570442BD5D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3889D68CD5D8C523E57E /* main.m */; };
+		BB5C3F01115874CD82D09205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3BE1392EBF7B6114F9F6 /* ViewController.m */; };
+		BB5C3F432D6E3051674625D7 /* Position.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C305E49C86B50FE4D0C12 /* Position.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB5C36AC62D47ACC228FBC97 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB5C341A4B12D0D66035E56E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB5C3E225409418A6AED64B8;
+			remoteInfo = sudoku;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BB5C305E49C86B50FE4D0C12 /* Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Position.m; sourceTree = "<group>"; };
+		BB5C313698819F88B3969092 /* Solution.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Solution.m; sourceTree = "<group>"; };
+		BB5C33AADE568AE695BA7531 /* Solution.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Solution.h; sourceTree = "<group>"; };
+		BB5C34049D1192C7BA2B6C4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		BB5C347497E0CD92435952BF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BB5C347F1F3CC7E8A63E784A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BB5C350A199A7EA28272CA9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BB5C35CA5798144B99596E01 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.info; path = Info.plist; sourceTree = "<group>"; };
+		BB5C361149CD47903741C90E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BB5C37E7D28D0155A554145B /* sudokuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sudokuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5C3889D68CD5D8C523E57E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BB5C3925434A408E8B384AD4 /* sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB5C3973BF576F093C2EA254 /* sudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sudokuTests.m; sourceTree = "<group>"; };
+		BB5C3A11EB1EAB125B681EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB5C3A156917011EBB907151 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
+		BB5C3B4615FBA470F6765D8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BB5C3BE1392EBF7B6114F9F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BB5C3C5054502FDEFD24FE2E /* SudokuGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SudokuGenerator.m; sourceTree = "<group>"; };
+		BB5C3F1EF9C18A80EC3BB031 /* SudokuGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SudokuGenerator.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB5C30E966AEF16D259C91BC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5C35B93732677995F3064B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BB5C3219175B258915A9C8CD /* sudoku */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C383A74577AF94BAE9F9C /* Supporting Files */,
+				BB5C361149CD47903741C90E /* Images.xcassets */,
+				BB5C3E5E0430A6D014DCE445 /* LaunchScreen.xib */,
+				BB5C347F1F3CC7E8A63E784A /* AppDelegate.h */,
+				BB5C3B4615FBA470F6765D8D /* AppDelegate.m */,
+				BB5C389C2D8ADDE11B8D193E /* Main.storyboard */,
+				BB5C347497E0CD92435952BF /* ViewController.h */,
+				BB5C3BE1392EBF7B6114F9F6 /* ViewController.m */,
+				BB5C3C5054502FDEFD24FE2E /* SudokuGenerator.m */,
+				BB5C3F1EF9C18A80EC3BB031 /* SudokuGenerator.h */,
+				BB5C313698819F88B3969092 /* Solution.m */,
+				BB5C33AADE568AE695BA7531 /* Solution.h */,
+				BB5C305E49C86B50FE4D0C12 /* Position.m */,
+				BB5C3A156917011EBB907151 /* Position.h */,
+			);
+			path = sudoku;
+			sourceTree = "<group>";
+		};
+		BB5C32E07DFC5FEC944F58CA = {
+			isa = PBXGroup;
+			children = (
+				BB5C34E9461EC977272699E3 /* Products */,
+				BB5C3219175B258915A9C8CD /* sudoku */,
+				BB5C3A07F1F1EC9AAC971D8B /* sudokuTests */,
+			);
+			sourceTree = "<group>";
+		};
+		BB5C34E9461EC977272699E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C3925434A408E8B384AD4 /* sudoku.app */,
+				BB5C37E7D28D0155A554145B /* sudokuTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BB5C383A74577AF94BAE9F9C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C34049D1192C7BA2B6C4E /* Info.plist */,
+				BB5C3889D68CD5D8C523E57E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BB5C3A07F1F1EC9AAC971D8B /* sudokuTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C3A2B39B31CDD4FFC6CE1 /* Supporting Files */,
+				BB5C3973BF576F093C2EA254 /* sudokuTests.m */,
+			);
+			path = sudokuTests;
+			sourceTree = "<group>";
+		};
+		BB5C3A2B39B31CDD4FFC6CE1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BB5C35CA5798144B99596E01 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BB5C39F0D22FC3A3628B6C70 /* sudokuTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB5C3B3334C42C64BD00EBA5 /* Build configuration list for PBXNativeTarget "sudokuTests" */;
+			buildPhases = (
+				BB5C39647247FE56A37C88CC /* Sources */,
+				BB5C30E966AEF16D259C91BC /* Frameworks */,
+				BB5C39846522924551E4B9D1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB5C38CB70008CBA14D3E203 /* PBXTargetDependency */,
+			);
+			name = sudokuTests;
+			productName = sudokuTests;
+			productReference = BB5C37E7D28D0155A554145B /* sudokuTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BB5C3E225409418A6AED64B8 /* sudoku */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB5C3E750FA372530D057F68 /* Build configuration list for PBXNativeTarget "sudoku" */;
+			buildPhases = (
+				BB5C3CB3262876A887C74E44 /* Sources */,
+				BB5C35B93732677995F3064B /* Frameworks */,
+				BB5C3FEC259C6DA5C8AACFE6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sudoku;
+			productName = sudoku;
+			productReference = BB5C3925434A408E8B384AD4 /* sudoku.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB5C341A4B12D0D66035E56E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "___FULLUSERNAME___";
+			};
+			buildConfigurationList = BB5C3D36DBCD992B02395B22 /* Build configuration list for PBXProject "sudoku" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = BB5C32E07DFC5FEC944F58CA;
+			productRefGroup = BB5C34E9461EC977272699E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB5C3E225409418A6AED64B8 /* sudoku */,
+				BB5C39F0D22FC3A3628B6C70 /* sudokuTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB5C39846522924551E4B9D1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5C3FEC259C6DA5C8AACFE6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB5C3DE2C6CD624A84B55820 /* Images.xcassets in Resources */,
+				BB5C3359C711A84FEFD85B1F /* LaunchScreen.xib in Resources */,
+				BB5C3CEEB2C96CF2D52FFE3D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB5C39647247FE56A37C88CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB5C3544877C38B38A38DC00 /* sudokuTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB5C3CB3262876A887C74E44 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB5C3E6BF40B4570442BD5D6 /* main.m in Sources */,
+				BB5C34A2F6540ED55A9B0856 /* AppDelegate.m in Sources */,
+				BB5C3F01115874CD82D09205 /* ViewController.m in Sources */,
+				BB5C3D54A7D74566F806BD4C /* SudokuGenerator.m in Sources */,
+				BB5C3B542EAC1059047C773F /* Solution.m in Sources */,
+				BB5C3F432D6E3051674625D7 /* Position.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB5C38CB70008CBA14D3E203 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB5C3E225409418A6AED64B8 /* sudoku */;
+			targetProxy = BB5C36AC62D47ACC228FBC97 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BB5C389C2D8ADDE11B8D193E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB5C3A11EB1EAB125B681EB9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BB5C3E5E0430A6D014DCE445 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB5C350A199A7EA28272CA9E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB5C32818F1DD3E0422A18B7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = sudoku/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BB5C33137A7CADE0CDF9BDDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB5C33B581738527725041EA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB5C33DE66F007EAF61086EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/sudoku.app/sudoku";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = sudokuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+		BB5C361386E29B5E46B20AE9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/sudoku.app/sudoku";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = sudokuTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		BB5C3DD044FE552FA479EA26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = sudoku/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB5C3B3334C42C64BD00EBA5 /* Build configuration list for PBXNativeTarget "sudokuTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5C361386E29B5E46B20AE9 /* Debug */,
+				BB5C33DE66F007EAF61086EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BB5C3D36DBCD992B02395B22 /* Build configuration list for PBXProject "sudoku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5C33B581738527725041EA /* Debug */,
+				BB5C33137A7CADE0CDF9BDDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB5C3E750FA372530D057F68 /* Build configuration list for PBXNativeTarget "sudoku" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB5C32818F1DD3E0422A18B7 /* Debug */,
+				BB5C3DD044FE552FA479EA26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB5C341A4B12D0D66035E56E /* Project object */;
+}
