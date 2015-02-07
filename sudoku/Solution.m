@@ -101,7 +101,7 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
 
             if (pos.value != nil) {
 
-                [self reduce:pos value:pos.value];
+                [self reduce:pos];
 
                 //NSLog(@"x: %d y: %d", pos.x, pos.y);
                 assert(pos.value != 0);
@@ -171,7 +171,16 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
         Position * pos7 = _grid[off+7];
         Position * pos8 = _grid[off+8];
 
-        NSLog(@"%@ %@ %@ | %@ %@ %@ | %@ %@ %@", pos0.value, pos1.value, pos2.value, pos3.value, pos4.value, pos5.value, pos6.value, pos7.value, pos8.value);
+        NSLog(@"%@ %@ %@ | %@ %@ %@ | %@ %@ %@",
+            pos0.printableValue,
+            pos1.printableValue,
+            pos2.printableValue,
+            pos3.printableValue,
+            pos4.printableValue,
+            pos5.printableValue,
+            pos6.printableValue,
+            pos7.printableValue,
+            pos8.printableValue);
 
         off += 9;
         if (off == 27 || off == 54)
@@ -188,32 +197,78 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
     return retval;
 }
 
-- (void) reduce: (Position *) pos value: (NSNumber *) value {
+- (Position *) chooseRandomAvailablePosition: (NSMutableArray *) randoms {
+    Position * retval = nil;
+    int index = arc4random_uniform(randoms.count);
+    if (randoms.count > 0) {
+        retval = randoms[index];
+        [randoms removeObjectAtIndex:index];
+    }
+    return retval;
+}
+
+- (Position *) positionAtIndex: (int) index {
+    return _grid[index];
+}
+
+- (void) removePosition: (Position *) pos {
+    //remove the last constrained position to make progress
+    [_positions removeObject:pos];
+
+    int col = pos.x;
+    int row = pos.y;
+    int i = 0;
+
+    NSArray *rowArr = [self getRow:row];
+    NSArray *colArr = [self getCol:col];
+    NSArray *gridArr = [self getGrid:row col:col];
+
+    //update the constrained positions
+    while (i < 9) {
+        [(Position *) rowArr[i] remove:pos.value];
+        [(Position *) colArr[i] remove:pos.value];
+        [(Position *) gridArr[i] remove:pos.value];
+        i++;
+    }
+
+    //sort positions by most constrained
+    [_positions sortUsingComparator:comparator];
+}
+
+- (void) erasePosition: (Position *) pos {
+
+    [_positions addObject:pos];
+
+    int col = pos.x;
+    int row = pos.y;
+    int i = 0;
+
+    NSArray *rowArr = [self getRow:row];
+    NSArray *colArr = [self getCol:col];
+    NSArray *gridArr = [self getGrid:row col:col];
+
+    //update the constrained positions
+    NSNumber * num = pos.value;
+    while (i < 9) {
+        [(Position *) rowArr[i] add:num];
+        [(Position *) colArr[i] add:num];
+        [(Position *) gridArr[i] add:num];
+        i++;
+    }
+
+    pos.value = @0;
+
+    //sort positions by most constrained
+    [_positions sortUsingComparator:comparator];
+}
+
+
+- (void) reduce: (Position *) pos {
 
     bool bCanReduceFurther = false;
 
     do {
-        //remove the last constrained position to make progress
-        [_positions removeObject:pos];
-
-        int col = pos.x;
-        int row = pos.y;
-        int i = 0;
-
-        NSArray *rowArr = [self getRow:row];
-        NSArray *colArr = [self getCol:col];
-        NSArray *gridArr = [self getGrid:row col:col];
-
-        //update the constrained positions
-        while (i < 9) {
-            [(Position *) rowArr[i] remove:value];
-            [(Position *) colArr[i] remove:value];
-            [(Position *) gridArr[i] remove:value];
-            i++;
-        }
-
-        //sort positions by most constrained
-        [_positions sortUsingComparator:comparator];
+        [self removePosition:pos];
 
         [self checkAscending];
 
@@ -221,7 +276,7 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
 
         if (bCanReduceFurther) {
             pos = _positions[0];
-            value = pos.value = pos.possibleValues.lastObject;
+            pos.value = pos.possibleValues.lastObject;
         }
 
     } while (bCanReduceFurther);
@@ -232,31 +287,9 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
     NSMutableArray* set = pos.possibleValues;
     NSNumber *value;
 
-    /*
-    //choose the most constrained number. This is equivalent to ensuring the other numbers in the set can be placed
-    // somewhere else safely without violating constraints.
-    int i = 0;
-    int mostConstrainedCount = 82;
-    NSNumber *value;
-    for (NSNumber * item in set) {
-        if (((NSMutableArray *)_numbers[item.integerValue - 1]).count < mostConstrainedCount) {
-            mostConstrainedCount = ((NSMutableArray *)_numbers[item.integerValue - 1]).count;
-            value = item;
-        }
-    }
-
-    if (value != nil) {
-    */
     if (_valueIndex < set.count) {
         value = [set objectAtIndex:_valueIndex];
     }
-    /*} else {
-        i = i;
-    }
-
-    NSMutableArray * numberPositions = _numbers[value.integerValue - 1];
-    */
-
 
     return value;
 }

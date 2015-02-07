@@ -45,8 +45,14 @@
 
 - (void) remove: (id) value {
     [_possibleValues removeObject:value];
+}
 
+- (void) add: (id) value {
+    [_possibleValues addObject:value];
+}
 
+- (NSString *)printableValue {
+    return _value.integerValue == 0 ? @"-" : [_value stringValue];
 }
 
 @end

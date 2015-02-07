@@ -5,6 +5,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class Position;
+
 typedef enum  {
     Invalid,
     Progress,
@@ -16,5 +18,8 @@ typedef enum  {
 - (SolutionState) converge;
 - (void) printGrid;
 - (void) nextSolution;
+- (Position*) positionAtIndex: (int) index;
+- (void) removePosition: (Position *) pos;
+- (void) erasePosition: (Position *) pos;
 
 @end

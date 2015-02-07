@@ -5,6 +5,7 @@
 
 #import "SudokuGenerator.h"
 #import "Solution.h"
+#import "Puzzle.h"
 
 @implementation SudokuGenerator {
     NSMutableArray * _solutionStack;
@@ -15,14 +16,14 @@
     return self;
 };
 
-- (void) generateSolution {
-
+- (Solution *) generateSolution {
+    Solution *solution = nil;
 
     int i = 0;
-    while (i < 1000) {
+    while (i < 1) {
 
         int backTrackCount = 0;
-        Solution* solution = [Solution new];
+        solution = [Solution new];
         SolutionState state = Invalid;
         [_solutionStack addObject:[solution copy]];
 
@@ -51,9 +52,18 @@
         i++;
     }
 
+    return solution;
 }
 
+- (Puzzle *)generatePuzzleWithSolution:(Solution *)solution difficulty: (PuzzleDifficulty) difficulty {
+    return [[Puzzle alloc] initWithSolution:solution difficulty: difficulty];
+}
 
+- (Puzzle *)generate: (PuzzleDifficulty) difficulty {
+    Solution * solution = [self generateSolution];
+    Puzzle * puzzle = [self generatePuzzleWithSolution:solution difficulty: difficulty];
 
+    return puzzle;
+}
 
 @end

@@ -9,6 +9,8 @@
 
 #import "AppDelegate.h"
 #import "SudokuGenerator.h"
+#import "Solution.h"
+#import "Puzzle.h"
 
 
 @interface AppDelegate ()
@@ -24,7 +26,11 @@
     // Override point for customization after application launch.
 
     SudokuGenerator * generator = [[SudokuGenerator alloc] init];
-    [generator generateSolution];
+    Puzzle* puzzle = [generator generate: PuzzleDifficultyEasy];
+
+    [puzzle.solution printGrid];
+    [puzzle.grid printGrid];
+
 
     return YES;
 }

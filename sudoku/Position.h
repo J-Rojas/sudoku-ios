@@ -9,11 +9,13 @@
 @interface Position : NSObject<NSCopying>
 
 @property NSNumber * value;
+@property (readonly) NSString* printableValue;
 @property int x, y;
 @property NSMutableArray* possibleValues;
 
 - (instancetype) initWithX: (int) x Y: (int) y;
 - (NSMutableArray*) shuffleSet: (NSMutableArray*) arr;
 - (void) remove: (id) value;
+- (void) add: (id) value;
 
 @end

@@ -4,10 +4,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Puzzle.h"
 
+@class Solution;
+@class Puzzle;
 
 @interface SudokuGenerator : NSObject
 
-- (void) generateSolution;
+- (Solution*) generateSolution;
+- (Puzzle*) generatePuzzleWithSolution: (Solution *) solution;
+
+- (Puzzle *) generate: (PuzzleDifficulty) difficulty;
 
 @end
