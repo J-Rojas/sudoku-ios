@@ -13,20 +13,13 @@
 #import "Position.h"
 #import "SudokuGenerator.h"
 
-void drawLine(int x1, int y1, int x2, int y2) {
-    /* Get the current graphics context */
-    CGContextRef currentContext = UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(currentContext, [UIColor blackColor].CGColor);
-
-    /* Set the width for the line */
-    CGContextSetLineWidth(currentContext, 2.0f);
-    /* Start the line at this point */
-    CGContextMoveToPoint(currentContext, x1, y1);
-    /* And end it at this point */
-    CGContextAddLineToPoint(currentContext, x2, y2);
-    /* Use the context's current color to draw the line */
-    CGContextStrokePath(currentContext);
-}
+#define SHOW_GRIDVIEW
+#define SHOW_PUZZLE
+#define SHOW_NUMBERS
+#define TEXT_COLOR
+#define ENABLE_TEXT_FILTERING
+#define SHOW_TOOLBAR
+#define ENABLE_ANIMATIONS
 
 @interface ViewController ()
 
@@ -39,8 +32,12 @@ void drawLine(int x1, int y1, int x2, int y2) {
     PuzzleDifficulty _difficulty;
 }
 
+/* The view controller loads all initial UI here */
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
     
     _difficulty = PuzzleDifficultyEasy;
 
@@ -48,9 +45,21 @@ void drawLine(int x1, int y1, int x2, int y2) {
     // Do any additional setup after loading the view, typically from a nib.
 
     // grid view
-    UIView* gridview = _gridview = [UIView new];
+#ifdef SHOW_GRIDVIEW
+    [self createGridView];
+#endif
+    
+#ifdef SHOW_PUZZLE
+    [self newPuzzle];
+#endif
 
-    self.view.backgroundColor = [UIColor whiteColor];
+#ifdef SHOW_TOOLBAR
+    [self createToolbar];
+#endif
+}
+
+- (void) createGridView {
+    UIView* gridview = _gridview = [UIView new];
     
     CGRect rect = self.view.frame;
     rect.size.width -= 20;
@@ -60,25 +69,26 @@ void drawLine(int x1, int y1, int x2, int y2) {
     rect.size.height = rect.size.width;
     rect.origin.x += (self.view.frame.size.width - rect.size.width) / 2;
     rect.origin.y += 20;
-
+    
     gridview.frame = rect;
-
-    [self.view addSubview:gridview];
     gridview.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
     gridview.layer.borderColor = [UIColor blackColor].CGColor;
     gridview.layer.borderWidth = 2;
+    
+    [self.view addSubview:gridview];
 
-    [self newPuzzle];
+}
 
+- (void) createToolbar {
     UISegmentedControl * toolbar = _toolbar = [UISegmentedControl new];
-
+    
     [toolbar insertSegmentWithTitle:@"Check" atIndex:0 animated:NO];
     [toolbar insertSegmentWithTitle:@"Easy" atIndex:1 animated:NO];
     [toolbar insertSegmentWithTitle:@"Solve" atIndex:2 animated:NO];
     [toolbar insertSegmentWithTitle:@"New" atIndex:3 animated:NO];
     [toolbar addTarget:self action:@selector(buttonTouch:) forControlEvents:UIControlEventValueChanged];
-
-    toolbar.frame = CGRectMake(10, gridview.frame.origin.y + gridview.frame.size.height + 10, self.view.bounds.size.width - 20, 30);
+    
+    toolbar.frame = CGRectMake(10, _gridview.frame.origin.y + _gridview.frame.size.height + 10, self.view.bounds.size.width - 20, 30);
     [self.view addSubview:toolbar];
 
 }
@@ -97,11 +107,14 @@ void drawLine(int x1, int y1, int x2, int y2) {
 
     [self layoutGrid:_bShowSolution ? self.puzzle.solution : self.puzzle.grid];
     
+    // Do animations
+#ifdef ENABLE_ANIMATIONS
     _gridview.alpha = 0.0;
 
     [UIView animateWithDuration:0.5 animations:^() {
         _gridview.alpha = 1.0f;
     }];
+#endif
 
 }
 
@@ -109,7 +122,7 @@ void drawLine(int x1, int y1, int x2, int y2) {
     for (UIView* view in _gridview.subviews) {
         if ([view isKindOfClass:[UITextField class]]) {
             UITextField * textField = (UITextField *) view;
-            int tag = view.tag;
+            int tag = (int) view.tag;
 
             UIColor * color = [_puzzle.grid positionAtIndex:tag].value == [_puzzle.solution positionAtIndex:tag].value ?
                 [UIColor blackColor] :
@@ -126,92 +139,132 @@ void drawLine(int x1, int y1, int x2, int y2) {
     UIView* gridview = _gridview;
     CGRect rect = _gridview.frame;
 
+    //determine the width/height of the grid items
     int sizeOfSquares = (rect.size.width - 2) / 9;
+    
     //rows
     for (int i = 0; i < 9; i++) {
         //cols
         for (int j = 0; j < 9; j++) {
 
             UITextField * label = nil;
-            
+
+#ifndef SHOW_NUMBERS
+            label = [self generateLabel: [Position new]];
+#else
+            //generate a grid item based on the data in the grid
             Position * pos = [solutionToShow getAtX:j Y:i];
             
-            NSString* num = pos.value.stringValue;
-            
             if (pos.value.integerValue != 0 && !pos.temporary) {
-                label = [UILabel new];
-                label.text = pos.value.stringValue;
-                label.textColor = [UIColor darkGrayColor];
-
+                label = [self generateLabel: pos];
             } else {
-                pos.temporary = YES;
-                label = [UITextField new];
-                if (pos.value.integerValue != 0)
-                    label.text = pos.value.stringValue;
-                label.textColor = [UIColor blackColor];
-                UIFontDescriptor * fontD = [label.font.fontDescriptor
-                    fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold
-                        | UIFontDescriptorTraitItalic];
-                label.font = [UIFont fontWithDescriptor: fontD size:label.font.pointSize + 2];
-                label.keyboardType = UIKeyboardTypeNumberPad;
-                label.clearsOnBeginEditing = true;
-                label.delegate = self;
-
-                [label addTarget:self
-                          action:@selector(textFieldDidChange:)
-                forControlEvents:UIControlEventEditingChanged];
+                label = [self generateTextField: pos];
             }
+#endif
+            
+            //mark the grid item with a number for tracking purposes
             label.tag = i * 9 + j;
+            
+            //center align all the text in the grid item
             label.textAlignment = NSTextAlignmentCenter;
 
-            rect = CGRectMake(j * sizeOfSquares, i * sizeOfSquares, sizeOfSquares + 2, sizeOfSquares + 2);
+            //Set up the position and boundary for each grid item
+            rect = CGRectMake(j * sizeOfSquares, i * sizeOfSquares,
+                              sizeOfSquares + 2, sizeOfSquares + 2);
             label.frame = rect;
-
+            
+            //set up the colors for the grid item
             label.layer.borderColor = [UIColor lightGrayColor].CGColor;
             label.layer.borderWidth = 2;
 
+            //add the grid item to the parent gridview
             [gridview addSubview:label];
         }
     }
 
     //draw 4 views to represent grid lines
-    UIView* line = [UILabel new];
+    [self drawGridLines: rect sizeOfSquares:sizeOfSquares];
+}
 
+- (UITextField*) generateLabel: (Position*) pos {
+    UITextField* label = (UITextField*) [UILabel new];
+    label.text = pos.value.stringValue;
+    label.textColor = [UIColor darkGrayColor];
+    return label;
+}
+
+- (UITextField*) generateTextField: (Position*) pos {
+    pos.temporary = YES;
+    UITextField* label = [UITextField new];
+    if (pos.value.integerValue != 0)
+        label.text = pos.value.stringValue;
+    
+#ifndef TEXT_COLOR
+    label.textColor = [UIColor darkGrayColor];
+#else
+    //Change font size for editable text
+    label.textColor = [UIColor blackColor];
+    UIFontDescriptor * fontD = [label.font.fontDescriptor
+                            fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold
+                            | UIFontDescriptorTraitItalic];
+    label.font = [UIFont fontWithDescriptor: fontD size:label.font.pointSize + 2];
+#endif
+    
+    label.keyboardType = UIKeyboardTypeNumberPad;
+    label.clearsOnBeginEditing = true;
+    label.delegate = self;
+
+    [label addTarget:self
+              action:@selector(textFieldDidChange:)
+    forControlEvents:UIControlEventEditingChanged];
+     
+    
+    return label;
+}
+
+- (void) drawGridLines: (CGRect) rect sizeOfSquares: (int) sizeOfSquares {
+    UIView* line = [UILabel new];
+    
     rect = CGRectMake(0, sizeOfSquares * 3, sizeOfSquares * 9 + 2, 2);
     line.frame = rect;
     line.layer.backgroundColor = [UIColor blackColor].CGColor;
-
-    [gridview addSubview:line];
-
+    
+    [_gridview addSubview:line];
+    
     line = [UILabel new];
     rect = CGRectMake(0, sizeOfSquares * 6, sizeOfSquares * 9 + 2, 2);
     line.frame = rect;
     line.layer.backgroundColor = [UIColor blackColor].CGColor;
-
-    [gridview addSubview:line];
-
+    
+    [_gridview addSubview:line];
+    
     line = [UILabel new];
     rect = CGRectMake(sizeOfSquares * 3, 0, 2, sizeOfSquares * 9 + 2);
     line.frame = rect;
     line.layer.backgroundColor = [UIColor blackColor].CGColor;
-
-    [gridview addSubview:line];
-
+    
+    [_gridview addSubview:line];
+    
     line = [UILabel new];
     rect = CGRectMake(sizeOfSquares * 6, 0, 2, sizeOfSquares * 9 + 2);
     line.frame = rect;
     line.layer.backgroundColor = [UIColor blackColor].CGColor;
-
-    [gridview addSubview:line];
+    
+    [_gridview addSubview:line];
 
 }
 
 - (void) textFieldDidChange: (UITextField*) field {
     //update the user grid
-    int index = field.tag;
+    NSInteger index = field.tag;
 
-    [_puzzle.grid positionAtIndex:index].value = [NSNumber numberWithInt:field.text.integerValue];
+    [_puzzle.grid positionAtIndex: index].value = [NSNumber numberWithInt: (int) field.text.integerValue];
+    
+#ifndef TEXT_COLOR
+    field.textColor = [UIColor darkGrayColor];
+#else
     field.textColor = [UIColor blackColor];
+#endif
 }
 
 - (void) buttonTouch: (UISegmentedControl*) control {
@@ -279,14 +332,32 @@ void drawLine(int x1, int y1, int x2, int y2) {
     // Dispose of any resources that can be recreated.
 }
 
+#ifdef ENABLE_TEXT_FILTERING
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if([textField.text length] >= 0)
-    {
-        [textField deleteBackward];
+    if ([string isEqualToString:@"0"]) {
+        textField.text = nil;
+        return NO;
     }
-
+    
+    [textField deleteBackward];
     return YES;
 }
+#endif
 
 @end
+
+void drawLine(int x1, int y1, int x2, int y2) {
+    /* Get the current graphics context */
+    CGContextRef currentContext = UIGraphicsGetCurrentContext();
+    CGContextSetStrokeColorWithColor(currentContext, [UIColor blackColor].CGColor);
+    
+    /* Set the width for the line */
+    CGContextSetLineWidth(currentContext, 2.0f);
+    /* Start the line at this point */
+    CGContextMoveToPoint(currentContext, x1, y1);
+    /* And end it at this point */
+    CGContextAddLineToPoint(currentContext, x2, y2);
+    /* Use the context's current color to draw the line */
+    CGContextStrokePath(currentContext);
+}
