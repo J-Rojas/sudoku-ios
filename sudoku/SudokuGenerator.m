@@ -16,14 +16,14 @@
     return self;
 };
 
-- (Solution *) generateSolution {
+- (Solution *) generateSolution: (Solution*) initialState {
     Solution *solution = nil;
 
     int i = 0;
     while (i < 1) {
 
         int backTrackCount = 0;
-        solution = [Solution new];
+        solution = initialState ? initialState : [Solution new];
         SolutionState state = Invalid;
         [_solutionStack addObject:[solution copy]];
 
@@ -60,7 +60,7 @@
 }
 
 - (Puzzle *)generate: (PuzzleDifficulty) difficulty {
-    Solution * solution = [self generateSolution];
+    Solution * solution = [self generateSolution: nil];
     Puzzle * puzzle = [self generatePuzzleWithSolution:solution difficulty: difficulty];
 
     return puzzle;

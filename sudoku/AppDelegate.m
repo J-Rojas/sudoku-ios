@@ -8,10 +8,7 @@
 
 
 #import "AppDelegate.h"
-#import "SudokuGenerator.h"
-#import "Solution.h"
-#import "Puzzle.h"
-
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -25,13 +22,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    SudokuGenerator * generator = [[SudokuGenerator alloc] init];
-    Puzzle* puzzle = [generator generate: PuzzleDifficultyEasy];
-
-    [puzzle.solution printGrid];
-    [puzzle.grid printGrid];
-
-
+    self.window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [[ViewController alloc] init];
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

@@ -12,7 +12,6 @@
 		BB5C3544877C38B38A38DC00 /* sudokuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3973BF576F093C2EA254 /* sudokuTests.m */; };
 		BB5C39F9E959CB3E15C034C7 /* Puzzle.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3E977D5B21B559B95D42 /* Puzzle.m */; };
 		BB5C3B542EAC1059047C773F /* Solution.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C313698819F88B3969092 /* Solution.m */; };
-		BB5C3CEEB2C96CF2D52FFE3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB5C389C2D8ADDE11B8D193E /* Main.storyboard */; };
 		BB5C3D54A7D74566F806BD4C /* SudokuGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3C5054502FDEFD24FE2E /* SudokuGenerator.m */; };
 		BB5C3DE2C6CD624A84B55820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB5C361149CD47903741C90E /* Images.xcassets */; };
 		BB5C3E6BF40B4570442BD5D6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BB5C3889D68CD5D8C523E57E /* main.m */; };
@@ -45,7 +44,6 @@
 		BB5C3889D68CD5D8C523E57E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BB5C3925434A408E8B384AD4 /* sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB5C3973BF576F093C2EA254 /* sudokuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = sudokuTests.m; sourceTree = "<group>"; };
-		BB5C3A11EB1EAB125B681EB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB5C3A156917011EBB907151 /* Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Position.h; sourceTree = "<group>"; };
 		BB5C3B4615FBA470F6765D8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BB5C3BE1392EBF7B6114F9F6 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
@@ -80,7 +78,6 @@
 				BB5C3E5E0430A6D014DCE445 /* LaunchScreen.xib */,
 				BB5C347F1F3CC7E8A63E784A /* AppDelegate.h */,
 				BB5C3B4615FBA470F6765D8D /* AppDelegate.m */,
-				BB5C389C2D8ADDE11B8D193E /* Main.storyboard */,
 				BB5C347497E0CD92435952BF /* ViewController.h */,
 				BB5C3BE1392EBF7B6114F9F6 /* ViewController.m */,
 				BB5C3C5054502FDEFD24FE2E /* SudokuGenerator.m */,
@@ -217,7 +214,6 @@
 			files = (
 				BB5C3DE2C6CD624A84B55820 /* Images.xcassets in Resources */,
 				BB5C3359C711A84FEFD85B1F /* LaunchScreen.xib in Resources */,
-				BB5C3CEEB2C96CF2D52FFE3D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,14 +253,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BB5C389C2D8ADDE11B8D193E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BB5C3A11EB1EAB125B681EB9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BB5C3E5E0430A6D014DCE445 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -414,6 +402,7 @@
 				BB5C33DE66F007EAF61086EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BB5C3D36DBCD992B02395B22 /* Build configuration list for PBXProject "sudoku" */ = {
 			isa = XCConfigurationList;
@@ -431,6 +420,7 @@
 				BB5C3DD044FE552FA479EA26 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

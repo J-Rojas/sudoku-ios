@@ -11,7 +11,7 @@
 
 @interface SudokuGenerator : NSObject
 
-- (Solution*) generateSolution;
+- (Solution*) generateSolution: (Solution*) initialState;
 - (Puzzle*) generatePuzzleWithSolution: (Solution *) solution;
 
 - (Puzzle *) generate: (PuzzleDifficulty) difficulty;

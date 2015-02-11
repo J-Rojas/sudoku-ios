@@ -346,4 +346,16 @@ NSComparator comparator = ^NSComparisonResult(Position *pos1, Position *pos2) {
     return array;
 }
 
+- (BOOL)isEqual:(id)object {
+    if ([object isKindOfClass:Solution.class]) {
+        Solution* solution = object;
+        for (int i = 0; i < 81; i++) {
+            if (((Position*)_grid[i]).value != [solution positionAtIndex:i].value)
+                return false;
+        }
+        return true;
+    }
+    return false;
+}
+
 @end

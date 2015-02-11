@@ -11,6 +11,7 @@
 @property NSNumber * value;
 @property (readonly) NSString* printableValue;
 @property int x, y;
+@property bool temporary;
 @property NSMutableArray* possibleValues;
 
 - (instancetype) initWithX: (int) x Y: (int) y;

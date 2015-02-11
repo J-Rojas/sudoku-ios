@@ -9,8 +9,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Puzzle;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIActionSheetDelegate, UITextFieldDelegate>
 
+@property Puzzle * puzzle;
 
 @end

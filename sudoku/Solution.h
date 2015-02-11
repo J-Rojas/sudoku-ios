@@ -21,5 +21,6 @@ typedef enum  {
 - (Position*) positionAtIndex: (int) index;
 - (void) removePosition: (Position *) pos;
 - (void) erasePosition: (Position *) pos;
+- (Position *) getAtX: (int) col Y: (int) row;
 
 @end
