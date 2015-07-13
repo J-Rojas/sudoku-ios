@@ -153,7 +153,8 @@
             UITextField * textField = (UITextField *) view;
             int tag = (int) view.tag;
 
-            UIColor * color = [_puzzle.grid positionAtIndex:tag].value == [_puzzle.solution positionAtIndex:tag].value ?
+            UIColor * color = [_puzzle.grid positionAtIndex:tag].value.integerValue ==
+                              [_puzzle.solution positionAtIndex:tag].value.integerValue ?
                 [UIColor blackColor] :
                 [UIColor redColor]
             ;
