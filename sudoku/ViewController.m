@@ -108,6 +108,7 @@
     [toolbar insertSegmentWithTitle:@"Easy" atIndex:1 animated:NO];
     [toolbar insertSegmentWithTitle:@"Solve" atIndex:2 animated:NO];
     [toolbar insertSegmentWithTitle:@"New" atIndex:3 animated:NO];
+    [toolbar insertSegmentWithTitle:@"Help" atIndex:4 animated:NO];
     [toolbar addTarget:self action:@selector(buttonTouch:) forControlEvents:UIControlEventValueChanged];
     
     toolbar.frame = CGRectMake(10, _gridview.frame.origin.y + _gridview.frame.size.height + 10, self.view.bounds.size.width - 20, 30);
@@ -333,6 +334,28 @@
             [self newPuzzle];
 
             break;
+        case 4: {
+            //show help
+            NSString* message =  @"To play, fill in all of the grey squares with a value between 1 to 9, while following this simple rule:\n\n";
+            message = [message stringByAppendingString:
+                @"Every horizontal row, vertical column and 3x3 box must contain all of the numbers 1 to 9 with no duplicates.\n\n"];
+            message = [message stringByAppendingString:
+                @"Use 'Check' to verify your progress. Use 'Easy', 'Medium' or 'Hard' to adjust the puzzle difficulty.\n"];
+            message = [message stringByAppendingString:
+                @"Use 'Solve' or 'Hide' to show and hide the puzzle solution. Use 'New' to generate a new puzzle.\n"];
+
+            UIAlertController *controller = [UIAlertController
+                alertControllerWithTitle:@"Help" message:message preferredStyle:UIAlertControllerStyleActionSheet];
+
+            UIAlertAction * action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:^(UIAlertAction * act) {
+                [controller dismissViewControllerAnimated:YES completion:nil];
+            }];
+
+            [controller addAction:action];
+
+            [self showViewController:controller sender:self];
+
+        } break;
 
     }
     control.selectedSegmentIndex = -1;
