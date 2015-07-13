@@ -9,7 +9,6 @@
 
 typedef enum  {
     Invalid, //An invalid solution - this Solution would violate the rules of Sudoku
-    InvalidBacktrack, 
     Progress, //The converge function has made progress, but the Solution is not complete.
     Solved //The Solution is completely solved, all values are assigned and the Sudoku Solution is valid.
 } SolutionState;
