@@ -6,6 +6,27 @@
 //  Copyright (c) 2014 Jose Rojas. All rights reserved.
 //
 
+/*
+ * The ViewController generates all of the UI for the application.  The Sudoku game board is programatically generated so that it
+ * can be easily resized. Its dimensions are dynamically calculated so that the game board is one half the height of the screen
+ * so that it is not obscured by the soft keyboard.
+ *
+ * This class relies on the SudokuGenerator, Puzzle, Solution, and Position classes to generate a new Sudoku puzzle,
+ * display its contents, and validate the results.
+ *
+ * The #define are here for educational purposes. I've used them to demonstrate the different aspects of programmatic UI
+ * development.
+ *
+ * The game board consists of 81 cells that each contain a UILabel or UITextView. When a new puzzle is generated, if the
+ * value of the puzzle cell is 0, a UITextView is used, otherwise a UILabel is used. This allows cells that immutable
+ * in the puzzle to not be edited, while those that are mutable can be selected and have their values changed by the
+ * user.
+ *
+ * A UISegmentedControl is dynamically placed underneath the grid to act as a simple menu system. The user can create
+ * a new puzzle, change the game difficulty, show the solution, or validate their current game state against the
+ * solution.
+ *
+ */
 
 #import "ViewController.h"
 #import "Puzzle.h"
@@ -30,6 +51,7 @@
     UIView* _gridview;
     bool _bShowSolution;
     PuzzleDifficulty _difficulty;
+    SudokuGenerator * _generator;
 }
 
 /* The view controller loads all initial UI here */
@@ -40,7 +62,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     _difficulty = PuzzleDifficultyEasy;
-
+    _generator = [[SudokuGenerator alloc] init];
 
     // Do any additional setup after loading the view, typically from a nib.
 
@@ -94,8 +116,16 @@
 }
 
 - (void) newPuzzle {
-    SudokuGenerator * generator = [[SudokuGenerator alloc] init];
-    Puzzle* puzzle = [generator generate: _difficulty];
+    [self newPuzzleWithSolution:nil];
+}
+
+- (void) newPuzzleWithSolution: (Solution *) solution {
+    Puzzle* puzzle = nil;
+
+    if (solution == nil)
+        puzzle = [_generator generate: _difficulty];
+    else
+        puzzle = [_generator generatePuzzleWithSolution:solution difficulty:_difficulty];
 
     [puzzle.solution printGrid];
     [puzzle.grid printGrid];
@@ -106,7 +136,7 @@
         [view removeFromSuperview];
 
     [self layoutGrid:_bShowSolution ? self.puzzle.solution : self.puzzle.grid];
-    
+
     // Do animations
 #ifdef ENABLE_ANIMATIONS
     _gridview.alpha = 0.0;
@@ -115,7 +145,6 @@
         _gridview.alpha = 1.0f;
     }];
 #endif
-
 }
 
 - (void) validateGrid {
@@ -140,14 +169,14 @@
     CGRect rect = _gridview.frame;
 
     //determine the width/height of the grid items
-    int sizeOfSquares = (rect.size.width - 2) / 9;
+    CGFloat sizeOfSquares = (rect.size.width - 2) / 9;
     
     //rows
     for (int i = 0; i < 9; i++) {
         //cols
         for (int j = 0; j < 9; j++) {
 
-            UITextField * label = nil;
+            UILabel * label = nil;
 
 #ifndef SHOW_NUMBERS
             label = [self generateLabel: [Position new]];
@@ -183,13 +212,14 @@
     }
 
     //draw 4 views to represent grid lines
-    [self drawGridLines: rect sizeOfSquares:sizeOfSquares];
+    [self drawGridLines: rect sizeOfSquares:(int) sizeOfSquares];
 }
 
-- (UITextField*) generateLabel: (Position*) pos {
-    UITextField* label = (UITextField*) [UILabel new];
+- (UILabel*) generateLabel: (Position*) pos {
+    UILabel* label = [UILabel new];
     label.text = pos.value.stringValue;
     label.textColor = [UIColor darkGrayColor];
+    label.backgroundColor = [UIColor whiteColor];
     return label;
 }
 
@@ -258,7 +288,7 @@
     //update the user grid
     NSInteger index = field.tag;
 
-    [_puzzle.grid positionAtIndex: index].value = [NSNumber numberWithInt: (int) field.text.integerValue];
+    [_puzzle.grid positionAtIndex: index].value = @(field.text.integerValue);
     
 #ifndef TEXT_COLOR
     field.textColor = [UIColor darkGrayColor];
@@ -297,7 +327,8 @@
             [self layoutGrid:_bShowSolution ? self.puzzle.solution : self.puzzle.grid];
             break;
         case 3:
-            //new puzzle
+            //new puzzle with the same solution
+            _bShowSolution = false;
             [self newPuzzle];
 
             break;
@@ -309,6 +340,8 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     //difficulty level was chosen
+    PuzzleDifficulty difficulty = _difficulty;
+
     switch (buttonIndex) {
         case 0:
             _difficulty = PuzzleDifficultyEasy;
@@ -324,7 +357,8 @@
             break;
     }
 
-    [self newPuzzle];
+    if (difficulty != _difficulty)
+        [self newPuzzleWithSolution:_puzzle.solution];
 }
 
 - (void)didReceiveMemoryWarning {

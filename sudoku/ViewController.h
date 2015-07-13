@@ -13,6 +13,7 @@
 
 @interface ViewController : UIViewController<UIActionSheetDelegate, UITextFieldDelegate>
 
+/* The current Sudoku Puzzle */
 @property Puzzle * puzzle;
 
 @end
