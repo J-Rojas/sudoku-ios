@@ -42,8 +42,8 @@
  *
  * In certain cases, the candidate value cannot come from the most constrained cell or the first value of the possible values
  * in a particular candidate cell. This occurs when a Solution state that would yield an invalid state if this choice is made
- * is discovered. The nextSolution: method can be called to choose the next most constrained cell in this particular case
- * to continue searching for a final Solution that would not lead to an invalid state.
+ * is discovered. The nextSolution: method can be called to choose the next value in the most constrained cell in this
+ * particular case to continue searching for a final Solution that would not lead to an invalid state.
  *
  */
 
